@@ -9,6 +9,7 @@ public class ProfileController : Controller
     ApplicationContext _context;
     public List<User> Users;
     public User Person;
+	EmailSender _sender = new EmailSender();
     public ProfileController(ApplicationContext context)
     {
         _context = context;
@@ -66,13 +67,18 @@ public class ProfileController : Controller
 			user.Id = userId;
 			_context.Users.Add(user);
 			await _context.SaveChangesAsync();
-			return Json(new { isExist = false, redirectTo = "/Profile" });
+			string userEmail = "varlamov.dan2013@mail.ru"; // Получите email пользователя из запроса
+			string verificationCode = GenerateVerificationCode(); // Генерируйте код подтверждения
+			string subject = "Код подтверждения регистрации";
+			string body = "Ваш код подтверждения: " + verificationCode;
+			await _sender.SendEmail(userEmail, subject, body);
+			return Json(new { isExist = false, redirectTo = "/Profile", verificationcode = verificationCode });
 		}
 		else
 		{
 			return Json(new { isExist = true, message = "Пользователь с таким e-mail уже зарегистрирован" });
 		}
-
+		
 
 		/////////////////////////////
 		/*if (Request.Cookies.ContainsKey("UserId"))
@@ -115,4 +121,16 @@ public class ProfileController : Controller
 		//////////////////////////////////////
 
 	}//close funcction
+	public static string GenerateVerificationCode()
+	{
+		int length = 6;
+		string chars = "0123456789";
+		Random random = new Random();
+		char[] code =  new char[length];
+		for (int i = 0; i < length; i++)
+		{
+			code[i] = chars[random.Next(chars.Length)];
+		}
+		return new string(code);
+	}
 }

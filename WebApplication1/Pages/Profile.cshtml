@@ -41,6 +41,12 @@
 			<button id="registrationBtn" type="submit" >Зарегистрироваться</button>
 			<p>Уже есть личный кабинет? <a href="#" onclick="switchmodal()">Войти</a> </p>
 		</form>
+		<div id="verification-form" class="modal-form" style="display: none;">
+			<h2>Введите код подтверждения</h2>
+			<input id="verification-code" type="text" placeholder="Код подтверждения">
+			<div id="verify_error-message" style="color: red;"></div>
+			<button id="verificationBtn">Подтвердить</button>
+		</div>
 	</div>
 </div>
 <div class="container">

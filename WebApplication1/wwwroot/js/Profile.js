@@ -1,4 +1,11 @@
-﻿// Функция для открытия модального окна авторизации
+﻿
+function closeModal() {
+    document.getElementById("loginModal").style.display = "none";
+}
+
+function closeregModal() {
+    document.getElementById("regModal").style.display = "none";
+}
 function openModal() {
     document.getElementById("loginModal").style.display = "flex";
 }
@@ -11,7 +18,14 @@ function validateEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }
-
+function verifyCode(verifycode, redirect) {
+    if (document.getElementById("verification-code").value.trim() == verifycode) {
+        window.location.href = redirect
+    }
+    else {
+        document.querySelector("#verify_error-message").innerText = "Некорректный код подтверждения"
+    }
+}
 function openregModal() {
     document.getElementById("regModal").style.display = "flex";
 }
@@ -39,7 +53,7 @@ if (document.querySelector("#loginModal .modal-content form")) {
     document.querySelector("#loginModal .modal-content form").addEventListener("submit", function (event) {
         event.preventDefault();
         if (!validateEmail(document.querySelector("#loginModal .modal-content form #login").value)) {
-            document.getElementById("error-message").innerText = "Некорректное имя пользователя/пароль";
+            document.querySelector("#loginModal .modal-content form #error-message").innerText = "Некорректное имя пользователя/пароль";
         }
         else {
             var form = event.target;
@@ -78,17 +92,21 @@ if (document.querySelector("#regModal .modal-content form")) {
                 .then(response => response.json())
                 .then(data => {
                     if (data.isExist) {
-                        document.querySelector("#regModal .modal-content form #password").value = "";
+                        document.querySelector("#regModal .modal-content form #login").value = "";
                         document.querySelector("#regModal .modal-content form #password").value = "";
                         document.querySelector("#regModal .modal-content form #error-message").innerText = data.message;
                     } else {
-                        window.location.href = data.redirectTo;
+                        document.getElementById("verification-form").style.display = "block";
+                        document.getElementById("verificationBtn").addEventListener("click", function () {
+                            verifyCode(data.verificationcode, data.redirectTo);
+                        });
                     }
                 })
         }
         
     });
 }
+
 // Обработчик события для кнопки входа
 if (document.getElementById("loginBtn"))
 {
@@ -96,10 +114,3 @@ if (document.getElementById("loginBtn"))
     document.getElementById("SignUpBtn").addEventListener("click", openregModal);
 }
 
-function closeModal() {
-    document.getElementById("loginModal").style.display = "none";
-}
-
-function closeregModal() {
-    document.getElementById("regModal").style.display = "none";
-}
