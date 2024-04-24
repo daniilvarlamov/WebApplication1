@@ -1,0 +1,27 @@
+﻿.apartment-details {
+    display: flex;
+}
+
+/* Изображение квартиры */
+.apartment-image {
+    flex: 1;
+    margin-right: 20px;
+}
+
+    .apartment-image img {
+        width: 100%;
+        height: auto;
+    }
+
+/* Информация о квартире */
+.apartment-info {
+    flex: 2;
+}
+
+.apartment-info h2 {
+    color: #333;
+}
+
+.apartment-info p {
+    margin: 10px 0;
+}

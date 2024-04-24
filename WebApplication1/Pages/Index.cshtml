@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+
+@{
+	ViewData["Title"] = "ЖК Империя";
+}
+
+@using System.IO;
+<head>
+	<link rel="stylesheet" href="~/css/Index.css" asp-append-version="true" />
+</head>
+<div class="container">
+	<h1>Добро пожаловать в Жилой Комплекс "Империя"</h1>
+	<img class="main-image" src="https://bigfoto.name/uploads/posts/2022-01/1642224032_24-bigfoto-name-p-kvartirnie-doma-42.jpg" alt="Изображение жилого комплекса">
+	<div class="gallery">
+		@{
+			var houses = ViewData["houses"] as List<string>;
+			foreach (var file in houses)
+			{
+				<img src="@file" alt="@file" />
+			}
+		}
+	</div>
+	<div class="carousel">
+		<div class="scroll-list">
+			@{
+				var apps = ViewData["apps"] as List<string>;
+				foreach (var file in apps)
+				{
+					string relativePath = file.Replace("\\", "/").Replace("wwwroot","");
+					<img class="item" src="@relativePath" alt="Планировка" />
+				}
+		}
+		</div>
+	</div>
+
+</div>
+
+
+<script src="~/js/Index.js" asp-append-version="true"></script>

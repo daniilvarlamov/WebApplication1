@@ -1,0 +1,115 @@
+﻿@page
+@using WebApplication1.Models
+@model ProfileModel
+@{
+	var Person = ViewData["Profile"] as User;
+	if ((bool)ViewData["islogged"] == false)
+	{
+		ViewData["Title"] = "Личный кабинет";
+	}
+	else
+	{
+		ViewData["Title"] = Person.name + "\t" + Person.surname;
+	}
+}
+<head>
+	<link rel="stylesheet" href="~/css/Profile.css" asp-append-version="true" />
+</head>
+<div id="loginModal" class="modal">
+	<div class="modal-content">
+		<span class="close-btn" onclick="closeModal()">&times;</span>
+		<h2>Вход</h2>
+		<form method="post" class="modal-form">
+			<div id="error-message" style="color: red;"></div>
+			<input id="login" name="email" type="text" placeholder="Ваш e-mail">
+			<input id="password" name="password" type="password" placeholder="Пароль">
+			<button id="entryBtn" type="submit">Войти</button>
+		</form>
+	</div>
+</div>
+<div id="regModal" class="modal">
+	<div class="modal-content">
+		<span class="close-btn" onclick="closeregModal()">&times;</span>
+		<h2>Регистрация</h2>
+		<form method="post" class="modal-form">
+			<input id="surname" name="surname" type="text" placeholder="Фамилия">
+			<input id="name" name="name" type="text" placeholder="Имя">
+			<div id="error-message" style="color: red;"></div>
+			<input id="login" name="email" type="text" placeholder="E-mail" autocomplete="off">
+			<input id="password" name="password" type="password" placeholder="Пароль" autocomplete="off">
+			<input type="tel" name="telefon" placeholder="Телефон" autocomplete="off">
+			<button id="registrationBtn" type="submit" >Зарегистрироваться</button>
+			<p>Уже есть личный кабинет? <a href="#" onclick="switchmodal()">Войти</a> </p>
+		</form>
+	</div>
+</div>
+<div class="container">
+	@{
+		if((bool)ViewData["islogged"] == true)
+		{
+			<h1>Привет, @Person.name</h1>
+
+		}
+		else {
+			<h1>Личный кабинет</h1>
+		}
+	}
+	<div class="profile-info">
+		<h2>Информация о пользователе</h2>
+		<p>@{
+				if(Person!=null)
+				{
+					@Person.surname @Html.Raw(" ") @Person.name @Html.Raw(" ") @Person.email
+				}
+			}
+		</p>
+	</div>
+@* 	<div class="profile-actions">
+		@{
+			if (Model.Apartments != null)
+			{
+				foreach(var app in Model.Apartments)
+				{	
+					string relativePath = app.path_content.Replace("\\", "/").Replace("wwwroot", "");
+					<div class="column-apartments__item">
+						<div class="about-apartment">
+							<p class="about-apartment__name-company">ЖК Империя</p>
+							<a href="/Apartment?id=@app.Id" target="_blank" class="about-apartment__img">
+								<img src="@relativePath" alt="План квартиры">
+							</a>
+							<div class="about-apartment__content">
+								<div class="about-apartment__price">
+									<p class="h3-base-text h3-base-text--black">@string.Format("{0:n0}", app.price)</p>
+								</div>
+								<div class="about-apartment__name">
+									<a href="/Apartment?id=@app.Id" target="_blank" class="b1-semibold-base-text b1-semibold-base-text--black">
+										@{
+											switch (app.number_of_rooms)
+											{
+												case 1:
+													@Html.Raw("Однокомнатная квартира")
+													;
+													break;
+												case 2:
+													@Html.Raw("Двухкомнатная квартира")
+													;
+													break;
+												case 3:
+													@Html.Raw("Трёхкомнатная квартира")
+													;
+													break;
+											}
+										} № @app.Number
+									</a>
+									<span class="b2-regular-base-text b2-regular-base-text--gray">Площадь: @app.Square | Этаж: @app.number_of_floor</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			}
+		}
+	</div> *@
+</div>
+
+<script src="~/js/Profile.js" asp-append-version="true"></script>

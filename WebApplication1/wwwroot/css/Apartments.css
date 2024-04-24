@@ -1,0 +1,116 @@
+﻿/* Общие стили */
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+#filterInput {
+    margin-bottom: 10px;
+}
+
+#itemsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#itemsList li {
+    margin-bottom: 5px;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.items-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.items-list li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.items-list li:hover {
+    background-color: #e3e3e3;
+}
+
+.column-apartments {
+    display: flex;
+    flex-wrap: wrap; /* Если не помещается на одной строке, переносим на новую */
+    justify-content: space-between;
+}
+/* Стили для контейнера с квартирой */
+.column-apartments__item {
+    display: flex;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 30%;
+}
+
+/* Стили для блока с информацией о квартире */
+.about-apartment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Стили для названия компании */
+.about-apartment__name-company {
+    font-size: 24px;
+    font-weight: 600;
+    color: #007bff;
+    margin: 0 0 10px;
+}
+
+/* Стили для изображения квартиры */
+.about-apartment__img img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для блока с ценой */
+.about-apartment__price {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Стили для старой цены */
+.about-apartment__price-old {
+    font-size: 14px;
+    color: #6c757d;
+    text-decoration: line-through;
+}
+
+/* Стили для названия квартиры и описания */
+.about-apartment__name a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+}
+
+/* Стили для описания квартиры */
+.about-apartment__name span {
+    font-size: 14px;
+    color: #6c757d;
+}
+.m-bottom--xs {
+    margin-bottom: 32px;
+}

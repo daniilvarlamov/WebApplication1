@@ -1,0 +1,47 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.contacts {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* Стили для ссылок */
+.social-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    margin-right: 10px;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Распределение элементов в шапке по краям */
+    align-items: center; /* Выравнивание элементов по центру вертикали */
+}
+
+header a, footer a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}

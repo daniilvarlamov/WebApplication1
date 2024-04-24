@@ -1,0 +1,71 @@
+﻿@using WebApplication1.Models
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/Index">Главная</a>
+            <a href="/Apartments">Выбор квартиры и цен</a>
+        </nav>
+        <nav position="center">
+            <a href="/Index">ЖК Империя</a>
+        </nav>
+        @{
+            var Person = ViewData["Profile"] as User;
+            if (ViewContext.ActionDescriptor.DisplayName != null && ViewContext.ActionDescriptor.DisplayName == "/Profile")
+            {
+                if ((bool)ViewData["islogged"] == true)
+                {
+                    <nav>
+                        <a href="/Profile">@Person.name @Person.surname</a>
+                        <button id="logoutBtn" data-url="/Profile/Logout">Выйти</button>
+                    </nav>
+                }
+                else {
+                    <nav>
+                        <button id="loginBtn">Войти</button>
+                        <button id="SignUpBtn">Регистрация</button>
+                    </nav>
+                }
+        }
+        else
+        {
+            <nav>
+                <a href="/Profile">Личный кабинет</a>
+            </nav>
+        }
+        }
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+            <div class="contacts">
+                <p>Ждем вас в нашем офисе для подробной консультации и выбора жилья по адресу: г. Нижний Новгород бульвар Мира 45.</p>
+                <p>Звоните нам по телефону: +7 (831) 445-22-11 или пишите на электронную почту: imperia@zhilstroy.nn</p>
+            </div>
+            <div class="social-links">
+                <a href="[ссылка на страницу в Facebook]">Facebook</a>
+                <a href="[ссылка на аккаунт в Instagram]">Instagram</a>
+                <a href="[ссылка на профиль в Twitter]">Twitter</a>
+            </div>
+            <p>&copy; 2024 Жилой Комплекс "Империя". Все права защищены.</p>
+        </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

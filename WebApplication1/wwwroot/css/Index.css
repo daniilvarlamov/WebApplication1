@@ -1,0 +1,108 @@
+﻿/* Общие стили */
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    background-color: rgba(255, 255, 255, 0.9); /* Прозрачный белый фон контейнера */
+    position: relative;
+    z-index: 1;
+}
+
+/* Стили для заголовка */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+/* Стили для изображений */
+.main-image {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.gallery {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Включаем полосу прокрутки */
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 100%; /* Установка ширины галереи на 100% */
+}
+
+.gallery img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px; /* Добавляем отступ справа для изображений */
+}
+/* Стили для карусели */
+.carousel {
+    display: flex;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.scroll-list {
+    display: inline-flex;
+    animation: 50s linear infinite alternate sun-rise;
+}
+
+@keyframes sun-rise {
+    from {
+        /* pushes the sun down past the viewport */
+        transform: translateX(0);
+    }
+
+    to {
+        /* returns the sun to its default position */
+        transform: translateX(-1300%);
+    }
+}
+
+.item {
+    flex: 0 0 auto;
+    margin-right: 20px; /* Расстояние между элементами списка */
+}
+
+.carousel img {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 40%; /* Ширина изображения в карусели */
+    height: auto;
+    margin-right: 10px;
+}
+
+
+.gallery::-webkit-scrollbar {
+    width: 10px; /* Ширина полосы прокрутки */
+}
+
+/* Для полосы прокрутки трека */
+.gallery::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Цвет трека */
+}
+
+/* Для полосы прокрутки ползунка */
+.gallery::-webkit-scrollbar-thumb {
+    background-color: #888; /* Цвет ползунка */
+    border-radius: 5px; /* Закругленные углы ползунка */
+}
+
+    /* При наведении на полосу прокрутки */
+.gallery::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Измененный цвет ползунка */
+}
+
+

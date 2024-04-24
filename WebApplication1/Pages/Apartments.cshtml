@@ -1,0 +1,96 @@
+﻿@page
+@model WebApplication1.Pages.ApartmentsModel
+@using WebApplication1.Models
+@{
+
+    ViewData["Title"] = "Квартиры";
+    var apps = ViewData["apps_full"] as List<Apartment>;
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/Apartments.css" asp-append-version="true" />
+</head>
+
+<div class="container">
+	<input type="text" id="filterInput" class="filter-input" placeholder="Введите критерий фильтрации">
+	<ul id="itemsList" class="items-list">
+		<li id="item_1" onclick="filtering(this)">Элемент 1</li>
+		<li id="item_2" onclick="filtering(this)">Элемент 2</li>
+		<li id="item_3" onclick="filtering(this)">Элемент 3</li>
+		<li id="item_4" onclick="filtering(this)">Элемент 4</li>
+	</ul>
+</div>
+<div class="filter-block">
+    <h3>Фильтр квартир</h3>
+    <!-- Форма для ввода параметров фильтрации -->
+    <form method="post">
+        <label for="price">Цена (от и до):</label>
+        <div id="price-range-slider"></div>
+        <input type="text" id="price-min" name="min_price" placeholder="Минимальная цена">
+        <input type="text" id="price-max" name="max_price" placeholder="Максимальная цена">
+        <label for="rooms">Кол-во комнат:</label>
+        <select id="rooms" name="rooms">
+            <option value="">Любое</option>
+            <option value="1">1 комната</option>
+            <option value="2">2 комнаты</option>
+            <option value="3">3 комнаты</option>
+            <option value="4">4 комнаты</option>
+            <option value="5">5 комнат</option>
+        </select>
+        <label for="floor">Этаж:</label>
+        <input type="text" id="floor" name="floor" placeholder="Этаж">
+        <label for="house-number">Номер дома:</label>
+        <select id="house-number" name="house_number">
+            <option value="">Любой</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button type="submit">Применить</button>
+    </form>
+</div>
+<div data-v-1fc775d3 data-v-04e0ffb2 data-v-7e55e169-s class="column-apartments m-bottom--xs">
+    @{
+        foreach (var app in apps)
+        {
+            string relativePath = app.path_content.Replace("\\", "/").Replace("wwwroot", "");
+            <div class="column-apartments__item">
+                <div class="about-apartment">
+                    <p class="about-apartment__name-company">ЖК Империя</p>
+                    <a href="/Apartment?id=@app.Id" target="_blank" class="about-apartment__img">
+                        <img src="@relativePath" alt="План квартиры">
+                    </a>
+                    <div class="about-apartment__content">
+                        <div class="about-apartment__price">
+                            <p class="h3-base-text h3-base-text--black">@string.Format("{0:n0}", app.price)</p>
+                        </div>
+                        <div class="about-apartment__name">
+                            <a href="/Apartment?id=@app.Id" target="_blank" class="b1-semibold-base-text b1-semibold-base-text--black">@{
+                                    switch(app.number_of_rooms)
+                                    {
+                                        case 1:
+                                            @Html.Raw("Однокомнатная квартира");
+                                            break;
+                                        case 2:
+                                            @Html.Raw("Двухкомнатная квартира");
+                                            break;
+                                        case 3:
+                                            @Html.Raw("Трёхкомнатная квартира");
+                                            break;
+                                    }
+                                } № @app.Number</a>
+                            <span class="b2-regular-base-text b2-regular-base-text--gray">Площадь: @app.Square | Этаж: @app.number_of_floor</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    }
+    }
+</div>
+<script>
+
+</script>
+
+<script src="~/js/Apartments.js" asp-append-version="true"></script>
