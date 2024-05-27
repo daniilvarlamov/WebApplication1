@@ -1,28 +1,4 @@
-﻿document.getElementById('filterInput').addEventListener('input', function () {
-    getFilteredResult(this.value);
-});
-
-
-function getFilteredResult(filterValue) {
-    filterValue = filterValue.toLowerCase();
-    var items = document.querySelectorAll('#itemsList li');
-    items.forEach(function (item) {
-        var text = item.textContent.toLowerCase();
-        if (text.indexOf(filterValue) !== -1) {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-}
-
-function filtering(element) {
-    var itemText = element.textContent;
-    document.getElementById("filterInput").value = itemText;
-    getFilteredResult(itemText);
-}
-
-document.querySelector('.filter-block form').addEventListener('submit', function (event) {
+﻿document.querySelector('.filter-block form').addEventListener('submit', function (event) {
     event.preventDefault(); // Предотвратить отправку формы по умолчанию
     var form = event.target;
     var minPrice = form.querySelector('#price-min').value.replace(/[^\d]/g, '');
@@ -75,7 +51,7 @@ function updateList(data) {
         apartmentItem.innerHTML = `
             <div class="about-apartment">
                 <p class="about-apartment__name-company">ЖК Империя</p>
-                <a href="/Apartment" target="_blank" class="about-apartment__img">
+                <a href="/Apartment?id=${app.id}" target="_blank" class="about-apartment__img">
                     <img src="${relativePath}" alt="План квартиры">
                 </a>
                 <div class="about-apartment__content">

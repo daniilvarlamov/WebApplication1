@@ -1,108 +1,98 @@
-﻿/* Общие стили */
-body, html {
+﻿body {
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    height: 100%;
 }
+
+.header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+    .header .site-title {
+        margin: 0;
+    }
 
 .container {
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0px;
-    background-color: rgba(255, 255, 255, 0.9); /* Прозрачный белый фон контейнера */
-    position: relative;
-    z-index: 1;
+    padding: 20px;
 }
 
-/* Стили для заголовка */
-h1 {
+.main-content {
+    padding: 20px 0;
+}
+
+.welcome-section {
     text-align: center;
-    margin-bottom: 20px;
 }
-/* Стили для изображений */
+
 .main-image {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    margin-bottom: 20px;
 }
 
-.gallery {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Включаем полосу прокрутки */
-    justify-content: flex-start;
-    margin-bottom: 20px;
-    width: 100%; /* Установка ширины галереи на 100% */
+section {
+    margin: 40px 0;
 }
 
-.gallery img {
-    max-width: 100%;
-    height: auto;
-    margin-right: 10px; /* Добавляем отступ справа для изображений */
+h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
 }
-/* Стили для карусели */
-.carousel {
+
+.developer-info, .news, .gallery, .carousel {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+    .news ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .news li {
+        background: #fff;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+.gallery-images {
     display: flex;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 20px;
-    overflow: hidden;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
-
-.scroll-list {
-    display: inline-flex;
-    animation: 50s linear infinite alternate sun-rise;
-}
-
-@keyframes sun-rise {
-    from {
-        /* pushes the sun down past the viewport */
-        transform: translateX(0);
+    .gallery-images img {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 8px;
     }
 
-    to {
-        /* returns the sun to its default position */
-        transform: translateX(-1300%);
-    }
+.carousel .scroll-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
 }
 
-.item {
+.carousel .item {
     flex: 0 0 auto;
-    margin-right: 20px; /* Расстояние между элементами списка */
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
 }
 
-.carousel img {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    width: 40%; /* Ширина изображения в карусели */
-    height: auto;
-    margin-right: 10px;
+.footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
 }
-
-
-.gallery::-webkit-scrollbar {
-    width: 10px; /* Ширина полосы прокрутки */
-}
-
-/* Для полосы прокрутки трека */
-.gallery::-webkit-scrollbar-track {
-    background-color: #f1f1f1; /* Цвет трека */
-}
-
-/* Для полосы прокрутки ползунка */
-.gallery::-webkit-scrollbar-thumb {
-    background-color: #888; /* Цвет ползунка */
-    border-radius: 5px; /* Закругленные углы ползунка */
-}
-
-    /* При наведении на полосу прокрутки */
-.gallery::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Измененный цвет ползунка */
-}
-
-

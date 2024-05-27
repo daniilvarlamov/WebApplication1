@@ -15,6 +15,7 @@ namespace WebApplication1.Pages
         public List<Apartment> ApartmentList;
         public Apartment Apartment;
         public House House;
+		public List<News> NewsList;
 		private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger, ApplicationContext db)
@@ -37,8 +38,7 @@ namespace WebApplication1.Pages
 					House.apps_per_floor = 10;
 					await _context.AddAsync(House);
 				}
-            }
-            await _context.SaveChangesAsync();*/
+            }*/
             HouseList = await _context.Houses.ToListAsync();
             List<string> houses = new List<string>();
             foreach (var house in HouseList)
@@ -54,6 +54,14 @@ namespace WebApplication1.Pages
 				apps.Add(apartment.path_content);
 			}
 			ViewData["apps"] = apps;
+
+            NewsList = await _context.News.ToListAsync();
+			List<string> temp_news = new List<string>();
+			foreach(var item in NewsList)
+			{
+                temp_news.Add(item.Item);
+			}
+			ViewData["news"] = temp_news;
 
 			//Заполнение БД планами квартир
 			/*var plans = Directory.GetFiles("wwwroot/src/plan/3_rooms", "*.*")

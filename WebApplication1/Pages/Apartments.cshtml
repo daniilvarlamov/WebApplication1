@@ -11,23 +11,15 @@
 	<link rel="stylesheet" href="~/css/Apartments.css" asp-append-version="true" />
 </head>
 
-<div class="container">
-	<input type="text" id="filterInput" class="filter-input" placeholder="Введите критерий фильтрации">
-	<ul id="itemsList" class="items-list">
-		<li id="item_1" onclick="filtering(this)">Элемент 1</li>
-		<li id="item_2" onclick="filtering(this)">Элемент 2</li>
-		<li id="item_3" onclick="filtering(this)">Элемент 3</li>
-		<li id="item_4" onclick="filtering(this)">Элемент 4</li>
-	</ul>
-</div>
 <div class="filter-block">
     <h3>Фильтр квартир</h3>
     <!-- Форма для ввода параметров фильтрации -->
     <form method="post">
         <label for="price">Цена (от и до):</label>
-        <div id="price-range-slider"></div>
-        <input type="text" id="price-min" name="min_price" placeholder="Минимальная цена">
-        <input type="text" id="price-max" name="max_price" placeholder="Максимальная цена">
+        <div class="price-range">
+            <input type="text" id="price-min" name="min_price" placeholder="Мин." class="price-input">
+            <input type="text" id="price-max" name="max_price" placeholder="Макс." class="price-input">
+        </div>
         <label for="rooms">Кол-во комнат:</label>
         <select id="rooms" name="rooms">
             <option value="">Любое</option>
