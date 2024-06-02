@@ -1,0 +1,1 @@
+give @p bat_spawn_egg{display:{Name:'{"text":"Rotation: 45","color":"red","italic":false}'},EntityTag:{NoGravity:1b,Invulnerable:1b,NoAI:1b,Tags:["help.rotade45"],active_effects:[{id:"invisibility",amplifier:1b,duration:19980}]}} 1

@@ -1,10 +1,10 @@
 ﻿@page
 @model WebApplication1.Pages.ApartmentModel
 @{
-    switch(Model.Apartment.number_of_rooms)
+    switch (Model.Apartment.number_of_rooms)
     {
         case 1:
-            ViewData["Title"]="Однокомнатная квартира";
+            ViewData["Title"] = "Однокомнатная квартира";
             break;
         case 2:
             ViewData["Title"] = "Двухкомнатная квартира";
@@ -16,51 +16,48 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/Apartment.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <div class="apartment-details">
     <div class="apartment-image">
-        <img src="@Model.Apartment.path_content" alt="Изображение квартиры">
+        <img id="apartmentImg" src="@Model.Apartment.path_content" alt="Изображение квартиры">
     </div>
     <div class="apartment-info">
         <h2>ЖК Империя</h2>
         <p class="price">Цена: @Model.Apartment.price.ToString("C")</p>
-        <p class="type">Тип квартиры: @{
-                switch(Model.Apartment.number_of_rooms)
-                {
-                    case 1:
-                        Html.Raw("Однокомнатная квартира");
-                        break;
-                    case 2:
-                        Html.Raw("Двухкомнатная квартира");
-                        break;
-                    case 3:
-                        Html.Raw("Трёхкомнатная квартира");
-                        break;
-                    default:
-                        break;
-                }
-                }</p>
+        <p class="type">Тип квартиры: @ViewData["Title"]</p>
         <p class="area">Площадь: @Model.Apartment.Square м<sup>2</sup></p>
         <p class="floor">Этаж: @Model.Apartment.number_of_floor</p>
         <p class="description">Описание квартиры: @Model.Apartment.description</p>
-        @if ((bool)ViewData["islogged"] == true && Model.Apartment.isbronned==false)
-        {
-            <button id="bron_btn" class="btn btn-primary">Забронировать</button>
-        }
-        else if ((bool)ViewData["islogged"] == true && Model.Apartment.isbronned == true && Model.Apartment.who_bronned==HttpContext.Request.Cookies["UserId"])
-        {
-            <p>Вы уже забронировали эту квартиру</p>
-        }
-        else
-        {
-            <p>Войдите, чтобы забронировать</p>
-            <button id="login_btn" class="btn btn-primary">Войти</button>
+        @{
+            if ((bool)ViewData["islogged"] == true && Model.Apartment.isbronned == false)
+            {
+                <button id="bron_btn" class="btn btn-primary">Забронировать</button>
+            }
+            else if ((bool)ViewData["islogged"] == true && Model.Apartment.isbronned == true && Model.Apartment.who_bronned == HttpContext.Request.Cookies["UserId"])
+            {
+                <p>Вы уже забронировали эту квартиру</p>
+            }
+            else if (Model.Apartment.isbronned == true)
+            {
+                <p>Эта квартира забронирована</p>
+            }
+            else
+            {
+                <p>Войдите, чтобы забронировать</p>
+                <button id="login_btn" class="btn btn-primary">Войти</button>
+            }
         }
 
     </div>
-    
+
 </div>
 
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
 
 <script src="~/js/Apartment.js" asp-append-version="true"></script>

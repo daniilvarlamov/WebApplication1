@@ -11,7 +11,7 @@ public class EmailSender
         {
             // Создаем объект сообщения
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Dania Varlamov", "dania.varlamow@yandex.ru")); // Ваш email
+            message.From.Add(new MailboxAddress("ЖК Империя", "dania.varlamow@yandex.ru")); // Ваш email
             message.To.Add(new MailboxAddress("", to));
             message.Subject = subject;
 

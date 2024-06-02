@@ -1,19 +1,23 @@
 ﻿document.querySelector('.filter-block form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Предотвратить отправку формы по умолчанию
+    event.preventDefault();
     var form = event.target;
     var minPrice = form.querySelector('#price-min').value.replace(/[^\d]/g, '');
     var maxPrice = form.querySelector('#price-max').value.replace(/[^\d]/g, '');
     var rooms = form.querySelector('#rooms').value;
     var floor = form.querySelector('#floor').value;
+    var minSquare = form.querySelector('#square-min').value.replace(/[^\d]/g, '');
+    var maxSquare = form.querySelector('#square-max').value.replace(/[^\d]/g, '');
     var houseNumber = form.querySelector('#house-number').value;
     var isValid = true;
     if ((minPrice && isNaN(parseInt(minPrice))) ||
         (maxPrice && isNaN(parseInt(maxPrice))) ||
         (rooms && isNaN(parseInt(rooms))) ||
         (floor && isNaN(parseInt(floor))) ||
-        (houseNumber && isNaN(parseInt(houseNumber)))) {
-        isValid = false;
-        alert('Пожалуйста, введите числовые значения для цены, количества комнат, этажа и номера дома');
+        (houseNumber && isNaN(parseInt(houseNumber))) ||
+        (minSquare && isNaN(parseInt(minSquare))) ||
+        (maxSquare && isNaN(parseInt(maxSquare)))) {
+            isValid = false;
+            alert('Пожалуйста, введите числовые значения для цены, количества комнат, этажа и номера дома');
     }
     if (isValid) {
         form.querySelector('#price-min').value = minPrice;
@@ -21,6 +25,8 @@
         form.querySelector('#rooms').value = rooms;
         form.querySelector('#floor').value = floor;
         form.querySelector('#house-number').value = houseNumber;
+        form.querySelector('#square-min').value = minSquare;
+        form.querySelector('#square-max').value = maxSquare;
         var formData = new FormData(form);
 
         fetch('/Apartment/Filtering', {

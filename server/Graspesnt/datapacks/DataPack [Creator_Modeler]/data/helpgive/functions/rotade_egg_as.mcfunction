@@ -1,0 +1,1 @@
+give @s bat_spawn_egg{display:{Name:'{"text":"Rotation: На тебя","color":"red","italic":false}'},EntityTag:{NoGravity:1b,Invulnerable:1b,NoAI:1b,Tags:["help.rotade_as"],active_effects:[{id:"minecraft:invisibility",amplifier:1b,duration:19980,show_particles:0b}]},CustomModelData:8882} 1

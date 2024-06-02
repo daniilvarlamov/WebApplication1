@@ -13,20 +13,20 @@ namespace WebApplication1.Controllers
             _context = context;
         }
         [HttpPost]
-        public async Task<IActionResult> Filtering(string? min_price, string? max_price, string? rooms, string? floor, string? house_number)
+        public async Task<IActionResult> Filtering(string? min_price, string? max_price, string? rooms, string? floor, string? house_number, string? min_square, string? max_square)
         {
             var query = _context.Apartments.AsQueryable();
 
             if (!string.IsNullOrEmpty(min_price))
             {
                 int minPrice = int.Parse(min_price);
-                query = query.Where(u => u.price > minPrice);
+                query = query.Where(u => u.price >= minPrice);
             }
 
             if (!string.IsNullOrEmpty(max_price))
             {
                 int maxPrice = int.Parse(max_price);
-                query = query.Where(u => u.price < maxPrice);
+                query = query.Where(u => u.price <= maxPrice);
             }
 
             if (!string.IsNullOrEmpty(rooms))
@@ -45,6 +45,18 @@ namespace WebApplication1.Controllers
             {
                 int houseNumber = int.Parse(house_number);
                 query = query.Where(u => u.number_of_house == houseNumber);
+            }
+
+            if (!string.IsNullOrEmpty(min_square))
+            {
+                int minSquare = int.Parse(min_square);
+                query = query.Where(u => u.Square >= minSquare);
+            }
+
+            if (!string.IsNullOrEmpty(max_square))
+            {
+                int maxSquare = int.Parse(max_square);
+                query = query.Where(u => u.Square <= maxSquare);
             }
 
             query = query.Where(u => u.isbronned == false);

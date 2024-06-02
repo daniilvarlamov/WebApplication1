@@ -10,6 +10,7 @@ public class ProfileController : Controller
     public List<User> Users;
     public User Person;
 	EmailSender _sender = new EmailSender();
+	private string VerificationCode;
     public ProfileController(ApplicationContext context)
     {
         _context = context;
@@ -67,12 +68,12 @@ public class ProfileController : Controller
 			user.Id = userId;
 			_context.Users.Add(user);
 			await _context.SaveChangesAsync();
-			string userEmail = "varlamov.dan2013@mail.ru"; // Получите email пользователя из запроса
-			string verificationCode = GenerateVerificationCode(); // Генерируйте код подтверждения
+			string userEmail = user.email; // Получите email пользователя из запроса
+			VerificationCode = GenerateVerificationCode(); // Генерируйте код подтверждения
 			string subject = "Код подтверждения регистрации";
-			string body = "Ваш код подтверждения: " + verificationCode;
+			string body = "Ваш код подтверждения: " + VerificationCode;
 			await _sender.SendEmail(userEmail, subject, body);
-			return Json(new { isExist = false, redirectTo = "/Profile", verificationcode = verificationCode });
+			return Json(new { isExist = false, redirectTo = "/Profile", verificationcode = VerificationCode });
 		}
 		else
 		{

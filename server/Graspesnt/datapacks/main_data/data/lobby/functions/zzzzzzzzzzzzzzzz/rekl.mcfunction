@@ -1,0 +1,15 @@
+item replace block 63 12 1 container.22 with white_dye{display:{Name:'{"text":" "}'},CustomModelData:10031,killer:55} 1
+item replace block 63 12 1 container.21 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.20 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.23 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.24 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.15 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.14 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.13 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.12 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.11 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.2 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.3 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.4 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.5 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1
+item replace block 63 12 1 container.6 with white_dye{display:{Name:'{"text":" "}'},killer:55} 1

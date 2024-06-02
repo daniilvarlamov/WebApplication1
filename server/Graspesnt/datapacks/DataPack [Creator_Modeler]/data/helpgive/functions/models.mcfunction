@@ -1,0 +1,1 @@
+give @p bat_spawn_egg{display:{Name:'{"text":"Интерер","color":"light_purple","italic":false}'},CustomModelData:875,EntityTag:{NoAI:1b,Tags:["help.killer.reloadmodel"]}} 1
